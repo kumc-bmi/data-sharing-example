@@ -1,13 +1,13 @@
-#data-sharing-example
+# data-sharing-example
 
-# Usage
-
-To import a csv into sqlite:
+The sqlite3 database `Northwind_large.sqlite` contains the following tables:
 
 ```
-sqlite> create table foo(a, b);
-sqlite> .mode csv
-sqlite> .import test.csv foo
+Category              EmployeeTerritory     Region              
+Customer              Order                 Shipper             
+CustomerCustomerDemo  OrderDetail           Supplier            
+CustomerDemographic   Product               Territory           
+Employee              ProductDetails_V
 ```
 
 # Acknowledgements
