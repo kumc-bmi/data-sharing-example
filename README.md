@@ -12,4 +12,4 @@ sqlite> .import test.csv foo
 
 # Acknowledgements
 
-Thank you to people.sc.fsu.edu for the example data, and [this stackoverflow post on sqlite basics](https://stackoverflow.com/questions/14947916/import-csv-to-sqlite#24582022).
+Thank you to [jpwhite3/northwind-SQLite3](https://github.com/jpwhite3/northwind-SQLite3) for `Northwind_large.sqlite`.  See included MIT license.
