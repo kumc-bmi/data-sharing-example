@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block button %}
+  <a class="add-pet-btn" href="{{ url_for('index') }}" alt="Back">
+    <i class="fas fa-marker"></i>
+    Questions
+  </a>
+{% endblock %}
+{% block content %}
+  {{ super() }}
+    <style type="text/css">
+      .main-header {
+        text-decoration: none;
+        margin-top: 3rem;
+      }
+      #contentcode {
+          padding-top: 30px;
+          width: 50%;
+          margin: auto;
+      }
+      .main-header .add-pet-btn {
+        text-decoration: none;
+        color: #272343;
+        border-radius: 8px;
+      }
+    </style>
+  {% include "bootstrap/base.html" %}
+    <section>
+      <div id="contentcode">
+        <label><h3>Result(s) - [Open-Ended]</h3></label>
+        <br>
+        <p>1. The <i><strong>OrderDetail</strong></i> table should have the shipping address details because not all products for a specific order might be shipped out at the same time. 
+          This is because a supplier might not have all the products ordered in stock. Either way, the shipper will always ship orders that are in stock from an order placed even though it is incomplete. 
+          When suppliers have products in stock or if they are available at their warehouse then it might be shipped by the same shipper or a different shipper.</p>
+        <p>2. No clear indication if the address in the <i><strong>Order</strong></i> table is for the shipper or the customer. So I had to run another report here using the address from <i><strong>Customer</strong></i> table for sanity check.
+        </p>
+        <label><h4>3. Average shipping distance from a Supplier's warehouse to the customer</h4></label>
+        {{ shpping_mean_customer_html | safe }}
+        <label><h4>4. First five address in the table</h4></label>
+        {{ shpping_list_customer_html | safe }}
+      </div>
+    </section>
+{% endblock %}

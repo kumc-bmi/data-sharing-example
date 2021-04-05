@@ -1,0 +1,96 @@
+<!-- extend the default template layput -->
+{% extends "layout.html" %}
+
+<!-- block for header right button -->
+{% block button %}
+    <a class="add-pet-btn" href="{{ url_for('index') }}" alt="Questions">
+        <i class="fas fa-marker"></i>
+        Questions
+    </a>
+{% endblock %}
+
+<!-- block for content. This has the cards with 1...9 images and KUMC logo -->
+{% block content %}
+    <section id="pet-cards">
+        <a href="https://www.kumc.edu/miea/medical-informatics.html">
+            <div class="card">
+                <img src="static/images/kumc.png" alt="nine">
+                <h2>KUMC</h2>
+                <h3>D. MIEA</h3>
+                <p>Division of Medical Informatics. The University of Kansas Medical Center</p>
+            </div>
+        </a>
+        <a href="{{ url_for('qone') }}">
+            <div class="card">
+                <img src="static/images/image-one.png" alt="one">
+                <h2>KUMC</h2>
+                <h3>D. MIEA</h3>
+                <p>For each country, what products are most popular?</p>
+            </div>
+        </a>
+        <a href="{{ url_for('qtwo') }}">
+            <div class="card">
+                <img src="static/images/image-two.png" alt="two">
+                <h2>KUMC</h2>
+                <h3>D. MIEA</h3>
+                <p>How many customers are return shoppers?</p>
+            </div>
+        </a>
+        <a href="{{ url_for('qthree') }}">
+            <div class="card">
+                <img src="static/images/image-three.png" alt="three">
+                <h2>KUMC</h2>
+                <h3>D. MIEA</h3>
+                <p>Provide the number of sales for each year.</p>
+            </div>
+        </a>
+        <a href="{{ url_for('qfour') }}">
+            <div class="card">
+                <img src="static/images/image-four.png" alt="four">
+                <h2>KUMC</h2>
+                <h3>D. MIEA</h3>
+                <p>What is the mean shipping time by Shipper?</p>
+            </div>
+        </a>
+        <a href="{{ url_for('qfive') }}">
+            <div class="card">
+                <img src="static/images/image-five.png" alt="five">
+                <h2>KUMC</h2>
+                <h3>D. MIEA</h3>
+                <p>What 2 employees generate the most revenue?</p>
+            </div>
+        </a>
+        <a href="{{ url_for('qsix') }}">
+            <div class="card">
+                <img src="static/images/image-six.png" alt="six">
+                <h2>KUMC</h2>
+                <h3>D. MIEA</h3>
+                <p>What supplier accounts for the most orders?</p>
+            </div>
+        </a>
+        <a href="{{ url_for('qseven') }}">
+            <div class="card">
+                <img src="static/images/image-seven.png" alt="seven">
+                <h2>KUMC</h2>
+                <h3>D. MIEA</h3>
+                <p>(hard) What is the mean shipping distance from a Supplier's warehouse to the customer?</p>
+            </div>
+        </a>
+        <a href="{{ url_for('qeight') }}">
+            <div class="card">
+                <img src="static/images/image-eight.png" alt="eight">
+                <h2>KUMC</h2>
+                <h3>D. MIEA</h3>
+                <p>( open-ended ) What logistics improvements could help this company improve its operations; how does the data support this?</p>
+            </div>
+        </a>
+        <a href="{{ url_for('qnine') }}">
+            <div class="card">
+                <img src="static/images/image-nine.png" alt="nine">
+                <h2>KUMC</h2>
+                <h3>D. MIEA</h3>
+                <p>( open-ended ) What, if any, are some interesting findings within the data?</p>
+            </div>
+        </a>
+    </section>
+{% endblock %}

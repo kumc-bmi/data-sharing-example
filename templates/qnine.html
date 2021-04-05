@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block button %}
+  <a class="add-pet-btn" href="{{ url_for('index') }}" alt="Back">
+    <i class="fas fa-marker"></i>
+    Questions
+  </a>
+{% endblock %}
+{% block content %}
+  {{ super() }}
+    <style type="text/css">
+      .main-header {
+        text-decoration: none;
+        margin-top: 3rem;
+      }
+      #contentcode {
+          padding-top: 30px;
+          width: 50%;
+          margin: auto;
+      }
+      .main-header .add-pet-btn {
+        text-decoration: none;
+        color: #272343;
+        border-radius: 8px;
+      }
+    </style>
+  {% include "bootstrap/base.html" %}
+    <section>
+      <div id="contentcode">
+        <label><h3>Result(s) - [Open-Ended]</h3></label>
+        <p>1. There are different encoded characters in the address columns in <i><strong>Order</strong></i> and <i><strong>Suppliers</strong></i> tables despite being blank. 
+          This resulted in the error below. I Had to limit my query select for no 7. I will need to pass those columns thorugh a regex function. 
+          SQLITE does not have predefined function like <i><strong>regex_replace</strong></i> so I will have to create a custom function.</p>
+        <pre><code>
+          (env) mbp-2 data-sharing-example % python app.py --show
+          Traceback (most recent call last):
+            File "/Users/anuforok/ML/data-sharing-example/app.py", line 24, in <module>
+              results = geocoder.geocode(address)
+          NameError: name 'geocoder' is not defined
+          (env) mbp-2 data-sharing-example % python app.py --show
+          Traceback (most recent call last):
+            File "/Users/anuforok/ML/data-sharing-example/app.py", line 24, in <module>
+              results = geocoder.geocode(shipping_address)
+          NameError: name 'geocoder' is not defined
+          (env) mbp-2 data-sharing-example % python app.py --show
+          Traceback (most recent call last):
+            File "/Users/anuforok/ML/data-sharing-example/app.py", line 27, in <module>
+              results = geocoder.geocode(shipping_address)
+            File "/Users/anuforok/ML/data-sharing-example/env/lib/python3.9/site-packages/opencage/geocoder.py", line 141, in geocode
+              raise InvalidInputError(bad_value=query)
+          opencage.geocoder.InvalidInputError: Input must be a unicode string, not None
+        </code></pre>
+        <p>2. The <i><strong>CustomerCustomerDemo</strong></i> table is empty and does not have any data in it.</p>
+        <p>3. No database dictionary for reference.</p>
+      </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block button %}
+  <a class="add-pet-btn" href="{{ url_for('index') }}" alt="Back">
+    <i class="fas fa-marker"></i>
+    Questions
+  </a>
+{% endblock %}
+{% block content %}
+  {{ super() }}
+    <style type="text/css">
+      .main-header {
+        text-decoration: none;
+        margin-top: 3rem;
+      }
+      #contentcode {
+          padding-top: 30px;
+          width: 50%;
+          margin: auto;
+      }
+      .main-header .add-pet-btn {
+        text-decoration: none;
+        color: #272343;
+        border-radius: 8px;
+      }
+    </style>
+  {% include "bootstrap/base.html" %}
+    <section>
+      <div id="contentcode">
+        <label><h3>Result(s)</h3></label>
+        <br>
+        <label><h4>1. Average shipping distance from a Supplier's warehouse to the customer</h4></label>
+        {{ shpping_mean_html | safe }}
+        <label><h4>2. First five address in the table</h4></label>
+        {{ shpping_list_html | safe }}
+      </div>
+    </section>
+{% endblock %}
