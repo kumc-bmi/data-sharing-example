@@ -58,21 +58,21 @@ geocoder = OpenCageGeocode(key)
 
 # for loop to iterate over customer list of addresses
 for shipping_address in data_frame_shipping_list:
-    results = geocoder.geocode(shipping_address)
-    ship_lat = results[0]['geometry']['lat']
-    ship_long = results[0]['geometry']['lng']
+  results = geocoder.geocode(shipping_address)
+  ship_lat = results[0]['geometry']['lat']
+  ship_long = results[0]['geometry']['lng']
 
-    shipping_lat.append(ship_lat)
-    shipping_long.append(ship_long)
+  shipping_lat.append(ship_lat)
+  shipping_long.append(ship_long)
 
 # for loop to iterate over supplier list of addresses
 for supplier_address in data_frame_supplier_list:
-    results = geocoder.geocode(supplier_address)
-    supply_lat = results[0]['geometry']['lat']
-    supply_long = results[0]['geometry']['lng']
+  results = geocoder.geocode(supplier_address)
+  supply_lat = results[0]['geometry']['lat']
+  supply_long = results[0]['geometry']['lng']
 
-    supplier_lat.append(supply_lat)
-    supplier_long.append(supply_long)
+  supplier_lat.append(supply_lat)
+  supplier_long.append(supply_long)
 
 # create new columns for latitude and longitude in dataframe
 data_frame['ship_lat'] = shipping_lat
@@ -107,3 +107,23 @@ shipping_mean = data_frame.groupby(['supplier_id', 'supplier_address'], as_index
 shpping_mean_customer_html = HTML(shipping_mean.to_html(classes='table-responsive table table-striped table-hover'))
 
 shpping_list_customer_html = HTML(data_frame.head().to_html(classes='table-responsive table table-striped table-hover'))
+
+Order.OrderDate = pd.to_datetime(Order.OrderDate)
+Order.RequiredDate = pd.to_datetime(Order.RequiredDate)
+Order.ShippedDate = pd.to_datetime(Order.ShippedDate)
+
+Order['ShippingTime'] = Order.RequiredDate - Order.ShippedDate
+Order['ProcessingTime'] = Order.ShippedDate - Order.OrderDate
+
+Order.ShippingTime = Order.ShippingTime.dt.days
+Order.ProcessingTime = Order.ProcessingTime.dt.days
+
+Order.groupby('ShipVia').mean()
+
+print(Order.groupby('ShipVia').mean())
+
+formula = 'ProcessingTime ~ C(ShipVia)'
+lm = ols(formula, Order).fit()
+anova = sma.stats.anova_lm(lm, typ=2)
+
+anova_html = HTML(anova.to_html(classes='table-responsive table table-striped table-hover'))
