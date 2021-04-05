@@ -1,7 +1,5 @@
 from q_db import *
 
-from q_db import *
-
 # Panda query for address for both suppliers and customers - limited only 20 becasue address caontained bad ascii characters and need to scrubbed [Will get back to data cleanup]
 data_frame = pd.read_sql_query('''
                         SELECT 
