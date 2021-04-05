@@ -120,10 +120,8 @@ Order.ProcessingTime = Order.ProcessingTime.dt.days
 
 Order.groupby('ShipVia').mean()
 
-print(Order.groupby('ShipVia').mean())
-
-formula = 'ProcessingTime ~ C(ShipVia)'
-lm = ols(formula, Order).fit()
-anova = sma.stats.anova_lm(lm, typ=2)
+calculate = 'ProcessingTime ~ C(ShipVia)'
+linear_model = ols(calculate, Order).fit()
+anova = sma.stats.anova_lm(linear_model, typ=2)
 
 anova_html = HTML(anova.to_html(classes='table-responsive table table-striped table-hover'))
