@@ -59,7 +59,7 @@ def qseven():
 # for question eight page
 @app.route('/qeight')
 def qeight():
-  return render_template('qeight.html', shpping_mean_customer_html = shpping_mean_customer_html, shpping_list_customer_html = shpping_list_customer_html)
+  return render_template('qeight.html', anova_html = anova_html, shpping_mean_customer_html = shpping_mean_customer_html, shpping_list_customer_html = shpping_list_customer_html)
 
 # for question nine page
 @app.route('/qnine')
