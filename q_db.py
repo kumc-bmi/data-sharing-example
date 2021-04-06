@@ -1,12 +1,13 @@
 # import libraries and dependencies needed
 from opencage.geocoder import OpenCageGeocode
 from datetime import timedelta, datetime
+from statsmodels.formula.api import ols
 from IPython.display import HTML
+from dotenv import load_dotenv
 from random import randint
 from random import choice as rc
 from pprint import pprint
 from scipy import stats
-from statsmodels.formula.api import ols
 import matplotlib.pyplot as matplot
 import seaborn
 import itertools
@@ -16,9 +17,16 @@ import pandas as pd
 import sqlite3
 import math
 import warnings
+import os
 
 # filter unwanted warning
 warnings.filterwarnings('ignore')
+
+# load dotenv to read env variable
+load_dotenv()
+
+# assign opencage API key to variabl opencage_api_key 
+opencage_api_key = os.environ.get("opencage_api_key")
 
 # Declear database
 DATABASE = "db/Northwind_large.sqlite"

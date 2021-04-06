@@ -51,8 +51,7 @@ shipping_long = []
 distance_lat = []
 
 # OpenCage API key - Great company with great expertise on location mapping
-key = 'eed6aa95e60548efa721ab515d3a98be'
-geocoder = OpenCageGeocode(key)
+geocoder = OpenCageGeocode(opencage_api_key)
 
 # for loop to iterate over customer list of addresses
 for shipping_address in data_frame_shipping_list:
