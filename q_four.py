@@ -29,3 +29,28 @@ shipper_mean_order_details = pd.read_sql_query('''
 shipper_mean_orders_html = HTML(shipper_mean_orders.to_html(classes='table-responsive table table-striped table-hover'))
 
 shipper_mean_order_details_html = HTML(shipper_mean_order_details.to_html(classes='table-responsive table table-striped table-hover'))
+
+smod = pd.read_sql_query('''
+                        SELECT 
+                          O.ShipVia AS ship_id,
+                          S.CompanyName AS company_name,
+                          AVG(O.ShippedDate - O.OrderDate) AS shipping_time
+                        FROM [Order] AS O
+                        INNER JOIN [Shipper] AS S ON S.ID = O.ShipVia
+                        GROUP BY 
+                          O.ShipAddress || ', ' || O.ShipCIty || ', ' || O.ShipRegion || ', ' || O.ShipPostalCode || ', ' || O.ShipCountry
+                                        
+''', connection)
+
+smod_count = pd.read_sql_query('''
+                        SELECT COUNT(*) AS count
+                        FROM( SELECT 
+                            O.ShipVia AS ship_id,
+                            S.CompanyName AS company_name,
+                            AVG(O.ShippedDate - O.OrderDate) AS shipping_time
+                          FROM [Order] AS O
+                          INNER JOIN [Shipper] AS S ON S.ID = O.ShipVia
+                          GROUP BY 
+                            O.ShipAddress || ', ' || O.ShipCIty || ', ' || O.ShipRegion || ', ' || O.ShipPostalCode || ', ' || O.ShipCountry)C
+                                        
+''', connection)

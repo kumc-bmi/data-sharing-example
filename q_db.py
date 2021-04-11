@@ -9,6 +9,7 @@ from random import choice as rc
 from pprint import pprint
 from scipy import stats
 import matplotlib.pyplot as matplot
+import altair as alt
 import seaborn
 import itertools
 import statsmodels.api as sma

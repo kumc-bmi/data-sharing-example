@@ -89,7 +89,7 @@ shipping_arrary = shipping_location.to_numpy()
 
 # create tuple and calculate the distance of latitude and longitude of corresponding customer and supplier shipping address in dataframe
 for supplier_address in data_frame_supplier_list:
-  for lat, long  in zip(supplier_array, shipping_arrary):
+  for lat, long in zip(supplier_array, shipping_arrary):
       distance = math.sqrt( ((lat[0]-long[0])**2)+((lat[1]-long[1])**2) )
       # create a column for distance and append to dataframe
       distance_lat.append(distance)

@@ -1,7 +1,5 @@
 from q_db import *
 
-from q_db import *
-
 # Panda query for address for both suppliers and customers - limited only 20 becasue address caontained bad ascii characters and need to scrubbed [Will get back to data cleanup]
 data_frame = pd.read_sql_query('''
                         SELECT 
@@ -108,3 +106,21 @@ shipping_mean = data_frame.groupby(['supplier_id', 'supplier_address'], as_index
 shpping_mean_customer_html = HTML(shipping_mean.to_html(classes='table-responsive table table-striped table-hover'))
 
 shpping_list_customer_html = HTML(data_frame.head().to_html(classes='table-responsive table table-striped table-hover'))
+
+Order.OrderDate = pd.to_datetime(Order.OrderDate)
+Order.RequiredDate = pd.to_datetime(Order.RequiredDate)
+Order.ShippedDate = pd.to_datetime(Order.ShippedDate)
+
+Order['ShippingTime'] = Order.RequiredDate - Order.ShippedDate
+Order['ProcessingTime'] = Order.ShippedDate - Order.OrderDate
+
+Order.ShippingTime = Order.ShippingTime.dt.days
+Order.ProcessingTime = Order.ProcessingTime.dt.days
+
+Order.groupby('ShipVia').mean()
+
+calculate = 'ProcessingTime ~ C(ShipVia)'
+linear_model = ols(calculate, Order).fit()
+anova = sma.stats.anova_lm(linear_model, typ=2)
+
+anova_html = HTML(anova.to_html(classes='table-responsive table table-striped table-hover'))

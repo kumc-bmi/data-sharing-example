@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block button %}
+  <a class="add-pet-btn" href="{{ url_for('index') }}" alt="Back">
+    <i class="fas fa-marker"></i>
+    Questions
+  </a>
+{% endblock %}
+{% block content %}
+  {{ super() }}
+    <style type="text/css">
+      .main-header {
+        text-decoration: none;
+        margin-top: 3rem;
+      }
+      #contentcode {
+          padding-top: 30px;
+          max-width: 800px;
+          margin: auto;
+      }
+      .main-header .add-pet-btn {
+        text-decoration: none;
+        color: #272343;
+        border-radius: 8px;
+      }
+    </style>
+  {% include "bootstrap/base.html" %}
+    <section>
+      <div id="contentcode">
+        <div id="altair-timeseries"></div>
+        </div>
+        <!-- Placeholder for the tooltip -->
+        <div id="vis-tooltip" class="vg-tooltip"></div>
+        </div>
+        <!-- Render Charts -->
+        <script type="text/javascript">
+          function parse(url, div) {
+          var opt = { mode: "vega-lite",
+              renderer: "svg",
+              actions: { export: true, source: false, editor: false }
+              };
+          vegaEmbed("#" + div, url, opt, function (error, result) {
+             vegaTooltip.vegaLite(result.view, url);
+             });
+            }
+          //Parse your Json variable here
+          parse({{ all_chart_html | safe }}, "altair-timeseries")    
+        </script>
+      </div>
+    </section>
+{% endblock %}
+
+parse({{ four_json_html | safe }}, "altair-timeseries")

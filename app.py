@@ -10,6 +10,7 @@ from q_six import *
 from q_seven import *
 from q_eight import *
 from q_nine import *
+from dashboard import *
 
 app = Flask(__name__)
 
@@ -65,6 +66,11 @@ def qeight():
 @app.route('/qnine')
 def qnine():
   return render_template('qnine.html')
+
+# for question nine page
+@app.route('/dashboard')
+def dashboard():
+  return render_template('dashboard.html', all_chart_html = all_chart_html)
 
 # port localhost 5000 for deploy
 if __name__ == '__main__':

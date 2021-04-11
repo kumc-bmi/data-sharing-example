@@ -5,11 +5,13 @@ product = pd.read_sql_query('''
                             SELECT 
                               country,
                               most_popular,
+                              product_sum,
                               MAX(product_count) AS product_count
                             FROM (
                                 SELECT 
                                   O.ShipCountry AS country, 
-                                  P.ProductName AS most_popular, 
+                                  P.ProductName AS most_popular,
+                                  SUM(ProductID) AS product_sum,
                                   COUNT(OD.ProductID) AS product_count
                                 FROM [Order] AS O 
                                 INNER JOIN [OrderDetail] AS OD ON OD.OrderID = O.ID
@@ -24,3 +26,4 @@ product = pd.read_sql_query('''
 
 # Convert dataframe to suitable html table report
 most_popular_html = HTML(product.to_html(classes='table-responsive table table-striped table-hover'))
+
