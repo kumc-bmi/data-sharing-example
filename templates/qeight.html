@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block button %}
+  <a class="add-pet-btn" href="{{ url_for('index') }}" alt="Back">
+    <i class="fas fa-marker"></i>
+    Questions
+  </a>
+{% endblock %}
+{% block content %}
+  {{ super() }}
+    <style type="text/css">
+      .main-header {
+        text-decoration: none;
+        margin-top: 3rem;
+      }
+      #contentcode {
+          padding-top: 30px;
+          width: 50%;
+          margin: auto;
+      }
+      .main-header .add-pet-btn {
+        text-decoration: none;
+        color: #272343;
+        border-radius: 8px;
+      }
+    </style>
+  {% include "bootstrap/base.html" %}
+    <section>
+      <div id="contentcode">
+        <label><h3>Result(s) - [Open-Ended]</h3></label>
+        <br>
+        <p>1. Hypothetical findings base on the reports from the preceding questions suggests everything seems to be very much the same except for a little in shipping logistic. 
+          There isn't a noticeable performance gap in shipping companies which might be as a result of the same shipping company having to deliver all products in a specific 
+          order even when in stock or out of stuck. A kin observation might be the company usually waits for all orders to be available or in stock before they decide to deliver. 
+          However it could be the delivery routes are not cost effective. Either way there is not much statistical significance in how they perform. Discounts based on categories have 
+          some difference which might be based on the level of discount offered but not that significant. The company will have to do some data and geographical analytics on 
+          clients that are more willing to buy products based on discount. Finally the order placement for the US division is much higher (Question one gives a glimpse on this) and should be researched a little bit more 
+          as there might be some unforeseen circumstance being omitted.
+        </p>
+        <label><h4>Anova Table Shipping Processing Time</h4></label>
+        {{ anova_html | safe }}
+        <p>2. The <i><strong>OrderDetail</strong></i> table should have the shipping address details because not all products for a specific order might be shipped out at the same time. 
+          This is because a supplier might not have all the products ordered in stock. Either way, the shipper will always ship orders that are in stock from an order placed even though it is incomplete. 
+          When suppliers have products in stock or if they are available at their warehouse then it might be shipped by the same shipper or a different shipper.</p>
+        <p>3. No clear indication if the address in the <i><strong>Order</strong></i> table is for the shipper or the customer. So I had to run another report here using the address from <i><strong>Customer</strong></i> table for sanity check.
+        </p>
+        <label><h4>4. Average shipping distance from a Supplier's warehouse to the customer</h4></label>
+        {{ shpping_mean_customer_html | safe }}
+        <label><h4>5. First five address in the table</h4></label>
+        {{ shpping_list_customer_html | safe }}
+      </div>
+    </section>
+{% endblock %}

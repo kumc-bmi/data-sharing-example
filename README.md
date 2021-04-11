@@ -24,6 +24,27 @@ Please write in python ( or similar ) code which interacts with the provided sql
 - ( open-ended ) What logistics improvements could help this company improve its operations; how does the data support this?
 - ( open-ended ) What, if any, are some interesting findings within the data?
 
+## Setup
+- On Unix or Mac `python3 -m venv venv`
+- On Windows: `py -3 -m venv venv` if you are using Python 2 `$ python2 -m virtualenv venv`
+- Then `pip install Flask`
+- Linux:
+* Debian, Ubuntu
+`$ sudo apt-get install python-virtualenv`
+* CentOS, Fedora
+`$ sudo yum install python-virtualenv`
+* Arch
+`$ sudo pacman -S python-virtualenv`
+
+## Start app:
+- Kindly look at the requirement.txt for all libraries need
+- For Unix or Mac users run this command `source env/bin/activate` in your terminal to activate the corresponding enviroment
+- For windows users run this command `$ . venv/bin/activate` in your DOS prompt to activate the corresponding enviroment
+- Then run this command `python app.py` to start app
+
+## Alternative
+- You can kindly run the `all_questions.py` in python for hardcode results
+
 ## Acknowledgements
 
 Thank you to [jpwhite3/northwind-SQLite3](https://github.com/jpwhite3/northwind-SQLite3) for `Northwind_large.sqlite`.  See included MIT license.
